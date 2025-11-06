@@ -1,0 +1,15 @@
+{
+  "originHash" : "29c677f96d6f32eaaf16fa2ea70efc3cd8ff9968f8cd5c42f73db9c10ebaea76",
+  "pins" : [
+    {
+      "identity" : "crowdconnected-sdk-swift-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/crowdconnected/crowdconnected-sdk-swift-spm",
+      "state" : {
+        "revision" : "d1bc55e7a78ec19abf67fd5f384bc997c16e2c26",
+        "version" : "2.2.1"
+      }
+    }
+  ],
+  "version" : 3
+}
