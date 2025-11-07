@@ -2,7 +2,7 @@
 
 This project demonstrates how to integrate the **CrowdConnected SDK** into a React Native application for both iOS and Android platforms. The SDK provides indoor positioning services using IPS (Indoor Positioning System), GPS, and Bluetooth beacon technology.
 
-![iOS Demo](docs/ios-demo.png) ![Android Demo](docs/android-demo.png)
+![iOS Demo](docs/Screenshot_iOS.png) ![Android Demo](docs/Screenshot_android.png)
 
 ## 📋 Table of Contents
 
