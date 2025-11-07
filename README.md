@@ -108,11 +108,8 @@ end
 
 1. Open your `.xcworkspace` file in Xcode
 2. Go to **File > Add Package Dependencies**
-3. Add these packages (version 2.1.x):
-   - `https://github.com/crowdconnected/crowdconnected-core-ios`
-   - `https://github.com/crowdconnected/crowdconnected-ips-ios`
-   - `https://github.com/crowdconnected/crowdconnected-geo-ios`
-   - `https://github.com/crowdconnected/crowdconnected-corebluetooth-ios`
+3. Add these packages (version 2.2.x):
+   - `https://github.com/crowdconnected/crowdconnected-sdk-swift-spm`
 
 #### 2.3 Configure Info.plist
 
@@ -317,8 +314,8 @@ Sets a custom alias for the device.
 
 ## Learn More
 
-- [CrowdConnected Documentation](https://docs.crowdconnected.com)
-- [CrowdConnected Console](https://console.crowdconnected.com)
+- [CrowdConnected Documentation](https://customer.support.crowdconnected.com/servicedesk/customer/article/2888138783?source=topic)
+- [CrowdConnected Console](https://app.crowdconnected.com)
 - [React Native Documentation](https://reactnative.dev)
 
 ## License
