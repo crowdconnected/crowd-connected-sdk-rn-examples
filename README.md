@@ -148,10 +148,10 @@ dependencies {
     implementation("com.facebook.react:react-android")
     
     // CrowdConnected SDK
-    implementation("net.crowdconnected.android.core:android-core:2.1.2")
-    implementation("net.crowdconnected.android.ips:android-ips:2.1.2")
-    implementation("net.crowdconnected.android.geo:android-geo:2.1.2")
-    implementation("net.crowdconnected.android.background:android-background:2.1.2")
+    implementation("net.crowdconnected.android.core:android-core:2.1.3")
+    implementation("net.crowdconnected.android.ips:android-ips:2.1.3")
+    implementation("net.crowdconnected.android.geo:android-geo:2.1.3")
+    implementation("net.crowdconnected.android.background:android-background:2.1.3")
 }
 ```
 

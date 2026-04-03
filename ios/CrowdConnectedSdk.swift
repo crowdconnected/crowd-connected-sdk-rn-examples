@@ -43,32 +43,14 @@ class CrowdConnectedSdk: RCTEventEmitter {
       sendStartUpFailure("Invalid credentials or missing required keys")
       return
     }
-    var trackingMode = CrowdConnectedCore.LocationTrackingMode.foregroundOnly
-    if ips {
-      CrowdConnectedIPS.activate()
-    }
-    if geo {
-      CrowdConnectedGeo.activate()
-    }
-    if bluetooth {
-      CrowdConnectedCoreBluetooth.activate()
-    }
-    if background {
-      trackingMode = .foregroundAndBackground
-    }
-    
-    let credentials = SDKCredentials(appKey: appKey, token: token, secret: secret)
+    let configBuilder = Configuration.Builder()
+    configBuilder.with(module: .ips, enabled: ips)
+    configBuilder.with(module: .geo, enabled: geo)
+    configBuilder.with(module: .coreBluetooth, enabled: bluetooth)
+    configBuilder.with(trackingMode: background ? .background : .foreground)
+    configBuilder.withCredentials(appKey: appKey, clientId: token, clientSecret: secret)
     CrowdConnected.shared.delegate = self
-    CrowdConnected.shared.start(credentials: credentials, trackingMode: trackingMode) {[weak self] deviceId, result in
-      guard let self else { return }
-      if case .success = result {
-        self.sendStartUpSuccess()
-        print("SDK started with device ID: \(deviceId ?? "unknown")")
-      } else {
-        self.sendStartUpFailure(result.description)
-        print("SDK failed to start: \(result)")
-      }
-    }
+    CrowdConnected.shared.start(with: configBuilder.build())
   }
   
   @objc func stop() {
@@ -116,9 +98,17 @@ class CrowdConnectedSdk: RCTEventEmitter {
 }
 
 extension CrowdConnectedSdk: CrowdConnectedDelegate {
-  func didUpdateLocation(_ locations: [CrowdConnectedCore.Location]) {
-    if let location = locations.last {
-      sendLocation(location)
-    }
+  func locationProvider(_ crowdConnected: CrowdConnectedCore.CrowdConnected, didUpdateLocation location: CrowdConnectedCore.Location) {
+    sendLocation(location)
+  }
+
+  func locationProvider(_ crowdConnected: CrowdConnectedCore.CrowdConnected, didStartSuccess deviceId: CrowdConnectedCore.DeviceID) {
+    self.sendStartUpSuccess()
+    print("SDK started with device ID: \(deviceId)")
+  }
+
+  func locationProvider(_ crowdConnected: CrowdConnectedCore.CrowdConnected, didStartFailure errorCode: CrowdConnectedCore.ErrorCode) {
+    self.sendStartUpFailure(errorCode.description)
+    print("SDK failed to start: \(errorCode)")
   }
 }

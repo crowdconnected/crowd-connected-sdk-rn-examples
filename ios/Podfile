@@ -62,6 +62,16 @@ target 'ccsdkrnexample' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # fmt 11.0.2 uses consteval incorrectly, rejected by Xcode 26 Clang.
+    # Compiling with C++17 makes FMT_CONSTEVAL resolve to constexpr instead.
+    installer.pods_project.targets.each do |target|
+      if target.name == 'fmt'
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'gnu++17'
+        end
+      end
+    end
   end
   
 end

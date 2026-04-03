@@ -11,13 +11,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9A0449AA2EBBFC1B00116A61 /* CrowdConnectedCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0449A92EBBFC1B00116A61 /* CrowdConnectedCore */; };
-		9A0449AC2EBBFC1B00116A61 /* CrowdConnectedCoreBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0449AB2EBBFC1B00116A61 /* CrowdConnectedCoreBluetooth */; };
-		9A0449AE2EBBFC1B00116A61 /* CrowdConnectedGeo in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0449AD2EBBFC1B00116A61 /* CrowdConnectedGeo */; };
-		9A0449B02EBBFC1B00116A61 /* CrowdConnectedIPS in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0449AF2EBBFC1B00116A61 /* CrowdConnectedIPS */; };
-		9A0449B22EBBFC1B00116A61 /* CrowdConnectedShared in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0449B12EBBFC1B00116A61 /* CrowdConnectedShared */; };
 		9A0449B72EBC056000116A61 /* CrowdConnectedSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0449B32EBC056000116A61 /* CrowdConnectedSdk.swift */; };
 		9A0449E42EBC105A00116A61 /* CrowdConnectedSdkBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0449E32EBC105A00116A61 /* CrowdConnectedSdkBridge.m */; };
+		9A0F89F32F7FE4AC0018379C /* CrowdConnectedCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0F89F22F7FE4AC0018379C /* CrowdConnectedCore */; };
+		9A0F89F52F7FE4AC0018379C /* CrowdConnectedCoreBluetooth in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0F89F42F7FE4AC0018379C /* CrowdConnectedCoreBluetooth */; };
+		9A0F89F72F7FE4AC0018379C /* CrowdConnectedGeo in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0F89F62F7FE4AC0018379C /* CrowdConnectedGeo */; };
+		9A0F89F92F7FE4AC0018379C /* CrowdConnectedIPS in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0F89F82F7FE4AC0018379C /* CrowdConnectedIPS */; };
+		9A0F89FB2F7FE4AC0018379C /* CrowdConnectedShared in Frameworks */ = {isa = PBXBuildFile; productRef = 9A0F89FA2F7FE4AC0018379C /* CrowdConnectedShared */; };
 		D68DA3B329FC7A0FE95E485E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -43,11 +43,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-ccsdkrnexample.a in Frameworks */,
-				9A0449AC2EBBFC1B00116A61 /* CrowdConnectedCoreBluetooth in Frameworks */,
-				9A0449B02EBBFC1B00116A61 /* CrowdConnectedIPS in Frameworks */,
-				9A0449AE2EBBFC1B00116A61 /* CrowdConnectedGeo in Frameworks */,
-				9A0449AA2EBBFC1B00116A61 /* CrowdConnectedCore in Frameworks */,
-				9A0449B22EBBFC1B00116A61 /* CrowdConnectedShared in Frameworks */,
+				9A0F89F52F7FE4AC0018379C /* CrowdConnectedCoreBluetooth in Frameworks */,
+				9A0F89F92F7FE4AC0018379C /* CrowdConnectedIPS in Frameworks */,
+				9A0F89F72F7FE4AC0018379C /* CrowdConnectedGeo in Frameworks */,
+				9A0F89F32F7FE4AC0018379C /* CrowdConnectedCore in Frameworks */,
+				9A0F89FB2F7FE4AC0018379C /* CrowdConnectedShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +163,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */,
+				9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -510,40 +510,40 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */ = {
+		9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/crowdconnected/crowdconnected-sdk-swift-spm";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9A0449A92EBBFC1B00116A61 /* CrowdConnectedCore */ = {
+		9A0F89F22F7FE4AC0018379C /* CrowdConnectedCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
+			package = 9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
 			productName = CrowdConnectedCore;
 		};
-		9A0449AB2EBBFC1B00116A61 /* CrowdConnectedCoreBluetooth */ = {
+		9A0F89F42F7FE4AC0018379C /* CrowdConnectedCoreBluetooth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
+			package = 9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
 			productName = CrowdConnectedCoreBluetooth;
 		};
-		9A0449AD2EBBFC1B00116A61 /* CrowdConnectedGeo */ = {
+		9A0F89F62F7FE4AC0018379C /* CrowdConnectedGeo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
+			package = 9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
 			productName = CrowdConnectedGeo;
 		};
-		9A0449AF2EBBFC1B00116A61 /* CrowdConnectedIPS */ = {
+		9A0F89F82F7FE4AC0018379C /* CrowdConnectedIPS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
+			package = 9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
 			productName = CrowdConnectedIPS;
 		};
-		9A0449B12EBBFC1B00116A61 /* CrowdConnectedShared */ = {
+		9A0F89FA2F7FE4AC0018379C /* CrowdConnectedShared */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A0449A82EBBFC1B00116A61 /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
+			package = 9A0F89F12F7FE4AC0018379C /* XCRemoteSwiftPackageReference "crowdconnected-sdk-swift-spm" */;
 			productName = CrowdConnectedShared;
 		};
 /* End XCSwiftPackageProductDependency section */

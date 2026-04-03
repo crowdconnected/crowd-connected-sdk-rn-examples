@@ -3,9 +3,11 @@
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import net.crowdconnected.android.background.BackgroundModule
-import net.crowdconnected.android.core.ConfigurationBuilder
 import net.crowdconnected.android.core.CrowdConnected
-import net.crowdconnected.android.core.StatusCallback
+import net.crowdconnected.android.core.Callback
+import net.crowdconnected.android.core.ErrorCode
+import net.crowdconnected.android.core.Location
+import net.crowdconnected.android.core.Configuration
 import net.crowdconnected.android.geo.GeoModule
 import net.crowdconnected.android.ips.IPSModule
 
@@ -25,7 +27,7 @@ class CrowdConnectedSdkModule(private val reactContext: ReactApplicationContext)
     @ReactMethod
     fun getVersion(promise: Promise) {
         try {
-            promise.resolve(CrowdConnected.getLibraryVersion())
+            promise.resolve(CrowdConnected.getVersion())
         } catch (e: Exception) {
             promise.reject("E_GET_VERSION", e)
         }
@@ -72,41 +74,35 @@ class CrowdConnectedSdkModule(private val reactContext: ReactApplicationContext)
                         Arguments.createMap()
                             .apply { putString("reason", "IPS or GEO must be enabled") })
                 }
-                val configurationBuilder = ConfigurationBuilder()
-                    .withAppKey(appKey)
-                    .withToken(token)
-                    .withSecret(secret)
-                    .withStatusCallback(object : StatusCallback {
-                        override fun onStartUpFailure(reason: String?) {
+                val configurationBuilder = Configuration.builder()
+                    .withContext(MainApplication.application)
+                    .withCredentials(appKey!!, token!!, secret!!)
+                    .withCallback(object : Callback {
+                        override fun onStartFailure(errorCode: ErrorCode) {
                             sendEvent(
                                 "CrowdConnectedSdkStartUpFailure",
-                                Arguments.createMap().apply { putString("reason", reason) })
+                                Arguments.createMap().apply { putString("reason", errorCode.message) })
                         }
 
-                        override fun onStartUpSuccess() {
+                        override fun onStartSuccess(deviceId: String) {
                             sendEvent("CrowdConnectedSdkStartUpSuccess", null)
-                            CrowdConnected.getInstance()?.registerPositionCallback { location ->
-                                val params = Arguments.createMap().apply {
-                                    putDouble("xMetres", location.xMetres)
-                                    putDouble("yMetres", location.yMetres)
-                                    putDouble("latitude", location.latitude)
-                                    putDouble("longitude", location.longitude)
-                                    putDouble("xPixels", location.xPixels)
-                                    putDouble("yPixels", location.yPixels)
-                                    putDouble("timestamp", location.timestamp.toDouble())
-                                    location.surfaceId?.let { putString("surfaceId", it) }
-                                    location.floor?.let { putInt("floor", it) }
-                                    location.locationType?.let { putString("locationType", it.toString()) }
-                                    location.quality?.let { putInt("quality", it) }
-                                }
-                                sendEvent("CrowdConnectedSdkLocationUpdated", params)
-                            }
                         }
 
-                        override fun onRuntimeError(reason: String?) {
-                            sendEvent(
-                                "CrowdConnectedSdkRuntimeError",
-                                Arguments.createMap().apply { putString("reason", reason) })
+                        override fun onUpdateLocation(location: Location) {
+                            val params = Arguments.createMap().apply {
+                                putDouble("xMetres", location.xMetres)
+                                putDouble("yMetres", location.yMetres)
+                                putDouble("latitude", location.latitude)
+                                putDouble("longitude", location.longitude)
+                                putDouble("xPixels", location.xPixels)
+                                putDouble("yPixels", location.yPixels)
+                                putDouble("timestamp", location.timestamp.toDouble())
+                                location.surfaceId?.let { putString("surfaceId", it) }
+                                location.floor?.let { putInt("floor", it) }
+                                location.locationType?.let { putString("locationType", it.toString()) }
+                                putInt("quality", location.quality)
+                            }
+                            sendEvent("CrowdConnectedSdkLocationUpdated", params)
                         }
                     })
 
@@ -119,16 +115,13 @@ class CrowdConnectedSdkModule(private val reactContext: ReactApplicationContext)
                 if (background) {
                     // Consider how to best get the drawable resource if not hardcoding
                     // R.drawable.ic_launcher_foreground. Maybe pass it in or use a context.
-                    configurationBuilder.withServiceNotificationInfo(
+                    configurationBuilder.withForegroundServiceConfig(
                         "Service Notification Text", // You might want to make this configurable
                         com.facebook.react.R.drawable.ic_resume // This R import might need adjustment based on file location
                     )
                     configurationBuilder.addModule(BackgroundModule())
                 }
-                CrowdConnected.start(
-                    MainApplication.application,
-                    configurationBuilder.build()
-                )
+                CrowdConnected.start(configurationBuilder.build())
             }
         } catch (e: Exception) {
             // best-effort: emit error event
@@ -140,8 +133,7 @@ class CrowdConnectedSdkModule(private val reactContext: ReactApplicationContext)
 
     @ReactMethod
     fun stop() {
-        CrowdConnected.getInstance()?.deregisterPositionCallback()
-        CrowdConnected.getInstance()?.stop()
+        CrowdConnected.stop()
     }
 
     @ReactMethod
