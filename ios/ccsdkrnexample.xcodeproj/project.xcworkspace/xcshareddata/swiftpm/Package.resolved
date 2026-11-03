@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/crowdconnected/crowdconnected-sdk-swift-spm",
       "state" : {
-        "branch" : "main",
-        "revision" : "cfb1a8b4cf9fcfcafb44b51e07a07fc658988108"
+        "revision" : "50c29779f3f4d8e647c727660eb06b1b9ddf433b",
+        "version" : "3.3.0"
       }
     }
   ],
