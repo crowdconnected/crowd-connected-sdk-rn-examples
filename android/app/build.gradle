@@ -110,10 +110,10 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation("net.crowdconnected.android.core:android-core:3.0.0")
-    implementation("net.crowdconnected.android.ips:android-ips:3.0.0")
-    implementation("net.crowdconnected.android.geo:android-geo:3.0.0")
-    implementation("net.crowdconnected.android.background:android-background:3.0.0")
+    implementation("net.crowdconnected.android.core:android-core:3.3.0")
+    implementation("net.crowdconnected.android.ips:android-ips:3.3.0")
+    implementation("net.crowdconnected.android.geo:android-geo:3.3.0")
+    implementation("net.crowdconnected.android.background:android-background:3.3.0")
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

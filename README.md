@@ -2,6 +2,8 @@
 
 This project demonstrates how to integrate the **CrowdConnected SDK** into a React Native application for both iOS and Android platforms. The SDK provides indoor positioning services using IPS (Indoor Positioning System), GPS, and Bluetooth beacon technology.
 
+**SDK version:** 3.3.0 (iOS and Android)
+
 ![iOS Demo](docs/Screenshot_iOS.png) ![Android Demo](docs/Screenshot_android.png)
 
 ## 📋 Table of Contents
@@ -108,8 +110,13 @@ end
 
 1. Open your `.xcworkspace` file in Xcode
 2. Go to **File > Add Package Dependencies**
-3. Add these packages (version 2.2.x):
-   - `https://github.com/crowdconnected/crowdconnected-sdk-swift-spm`
+3. Add the package `https://github.com/crowdconnected/crowdconnected-sdk-swift-spm`
+4. Set **Dependency Rule** to **Exact Version** `3.3.0` (or **Up to Next Major Version** from `3.3.0`)
+5. Add these products to your app target:
+   - `CrowdConnectedCore`
+   - `CrowdConnectedIPS`
+   - `CrowdConnectedGeo`
+   - `CrowdConnectedCoreBluetooth`
 
 #### 2.3 Configure Info.plist
 
@@ -141,21 +148,37 @@ See the existing files in this project:
 
 ### Step 3: Android Setup
 
-#### 3.1 Add Dependencies to build.gradle
+#### 3.1 Add the CrowdConnected Maven Repository
+
+In `android/build.gradle`, add the repository under `allprojects`:
+
+```gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://maven2.crowdconnected.net"
+        }
+    }
+}
+```
+
+#### 3.2 Add Dependencies to app/build.gradle
 
 ```gradle
 dependencies {
     implementation("com.facebook.react:react-android")
     
     // CrowdConnected SDK
-    implementation("net.crowdconnected.android.core:android-core:2.1.3")
-    implementation("net.crowdconnected.android.ips:android-ips:2.1.3")
-    implementation("net.crowdconnected.android.geo:android-geo:2.1.3")
-    implementation("net.crowdconnected.android.background:android-background:2.1.3")
+    implementation("net.crowdconnected.android.core:android-core:3.3.0")
+    implementation("net.crowdconnected.android.ips:android-ips:3.3.0")
+    implementation("net.crowdconnected.android.geo:android-geo:3.3.0")
+    implementation("net.crowdconnected.android.background:android-background:3.3.0")
 }
 ```
 
-#### 3.2 Configure AndroidManifest.xml
+#### 3.3 Configure AndroidManifest.xml
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -168,7 +191,7 @@ dependencies {
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
-#### 3.3 Create Native Modules
+#### 3.4 Create Native Modules
 
 See the existing files in this project:
 - `android/app/src/main/java/com/ccsdkrnexample/CrowdConnectedSdkModule.kt`
